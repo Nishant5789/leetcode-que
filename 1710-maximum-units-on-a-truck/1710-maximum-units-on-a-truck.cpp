@@ -11,7 +11,6 @@ class Solution {
     int fun(int a, int b, int count, int truckSize, int& box_fill)
     {
         int left=truckSize-box_fill;
-        // cout << left << " " << "box_fill" << box_fill;
         if(a<=left)
         {
             box_fill+=a;
@@ -36,8 +35,6 @@ public:
         int count=0, box_fill=0;
         for(auto &i: mp)
         {
-            
-            // cout << fun(i.first, i.second, count, truckSize, box_fill) << " "<<endl;
             count+=fun(i.first, i.second, count, truckSize, box_fill);
             if(count==truckSize)
                 break;
