@@ -7,32 +7,34 @@ using namespace std;
  // } Driver Code Ends
 //User function template for C++
 
-class Solution
+
+    class Solution
 {
-    public:
-    //Function to delete middle element of a stack.
-    void deleteMid(stack<int>&s, int sizeOfStack)
-    {
-        vector<int> temp;
-        int k;
-        if(sizeOfStack%2==0)
-        {
-            k=(sizeOfStack/2)+1;
-        }
-        k=sizeOfStack/2;
-        for(int i=0; i<k; i++)
-        {
-            int tem=s.top();
-            temp.push_back(tem);
-            s.pop();
-        }
-        s.pop();
-        for(int i=temp.size()-1;i>=0;i--)
-        {
-            s.push(temp[i]);
-        }
-    }
+   private:
+   void solve(stack<int>&s,int count,int size){
+       
+       if(count == size/2){
+           s.pop();
+           return;
+       }
+       
+       int num = s.top();
+       s.pop();
+       
+       solve(s,count+1,size);
+       
+       s.push(num);
+   }
+   public:
+   //Function to delete middle element of a stack.
+   void deleteMid(stack<int>&s, int sizeOfStack)
+   {
+       int count = 0;
+       solve(s,count,sizeOfStack);
+   }
 };
+
+
 
 // { Driver Code Starts.
 int main() {
