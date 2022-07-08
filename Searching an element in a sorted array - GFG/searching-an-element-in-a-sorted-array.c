@@ -11,21 +11,22 @@ int searchInSorted(int arr[], int N, int K)
 { 
     
     int l=0, h=N-1,mid;
-    while(h-l>1)
+    while(h>=l)
     {
-        mid=(h+l)/2;
+            mid=(h+l)/2;
+            if(arr[mid]==K)
+            {
+                return 1;
+            }
             if(arr[mid]<K)
             {
                 l=mid+1;
             }
-        else
-        {
-            h=mid;
-        }
+            else
+            {
+                h=mid-1;
+            }
     }
-    if(arr[l]==K || arr[h]==K)
-    return 1;
-    else
     return -1;
 }
 
