@@ -8,6 +8,7 @@ public:
             if(s[i]=='(')
             {
                 st.push(s[i]);
+                // adding number of open bracket
                 add++;
             }
             else
@@ -17,11 +18,13 @@ public:
                     if('('==st.top())
                     {
                         add--;
+                        // balance the brackets
                     }
                     st.pop();
                 }
                 else
                 {
+                     //for closed bracets count that appear before the open brackets
                     add++;
                 }
             }
