@@ -16,6 +16,7 @@ class Solution
         // code here 
         stack<int> st;
         int m=num[0].size(),flag=0;
+        // push all the celebraty
         for(int i=0; i<n; i++)
         {
             st.push(i);
@@ -27,6 +28,7 @@ class Solution
             int op2=st.top();
             st.pop();
             
+            //if op1 knows the op2 then it sure that op1 is not a celebraty
             if(num[op1][op2])
                 st.push(op2);
             else
@@ -41,12 +43,14 @@ class Solution
             int x=st.top();
             for(int i=0; i<n; i++)
             {
+                //check the all the row
                 if(num[x][i]==1)
                 {
                     st.pop();
                     st.push(-1);
                     break;
                 }
+                //check the all the colum
                 if(num[i][x]==0 && x!=i)
                 {
                     st.pop();
