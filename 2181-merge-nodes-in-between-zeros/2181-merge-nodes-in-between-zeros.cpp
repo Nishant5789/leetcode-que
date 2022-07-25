@@ -16,6 +16,8 @@ public:
        int res=-1;
         while(curr1)
         {
+            // when the first node.value appering zero then save it's address after sum of all 
+            // non zero number and when another zero have node is come hen do neccessary process
             if(curr1->val==0 && res==-1)
             {
                 res=0;
@@ -39,7 +41,6 @@ public:
             }
             curr1=curr1->next;
         }
-        
         return head->next;
     }
 };
