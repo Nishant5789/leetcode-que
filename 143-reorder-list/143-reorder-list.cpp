@@ -26,6 +26,9 @@ public:
           if(head==NULL || head->next==NULL)
             return ;
         ListNode* fast=head, *slow=head, *pre=NULL;
+        // first find the middle node of list and divide into two part 
+        // after we reverse the second the part 
+        // after than we insert the reverse list node one by one in first list; 
         int cnt=0;
         while(fast)
         {
@@ -40,6 +43,7 @@ public:
             }
         }
         pre->next=NULL;
+        // reverse the second list
         slow = reverse(slow);
         ListNode* curr2=slow, *temp=NULL;
         fast=head;
@@ -51,6 +55,7 @@ public:
             fast->next=temp;
             fast=temp->next;
         }
+        // for odd size of list
         if(cnt%2==1)
         {
             temp->next=slow;
