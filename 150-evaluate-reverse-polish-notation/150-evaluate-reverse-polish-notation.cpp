@@ -3,20 +3,23 @@ class Solution {
 public:
     int evalRPN(vector<string>& tokens)
     {
-   stack<string> st;
+        stack<string> st;
         int ans = 0;
         int top1 = 0, top2 = 0;
         for(int i=0;i<tokens.size();i++)
         {
+            // if any number apperinfg then push into stack;
             if(tokens[i]!="+" and tokens[i]!="-" and tokens[i]!="*" and tokens[i]!="/" )
             {
                 st.push(tokens[i]);
             }
             else
             {
-                if(!st.empty()) top1 = stoi(st.top());
+                if(!st.empty())
+                    top1 = stoi(st.top());
                 st.pop();
-                if(!st.empty()) top2 = stoi(st.top());
+                if(!st.empty()) 
+                    top2 = stoi(st.top());
                 st.pop();
                 if(tokens[i]=="+")
                 {
@@ -45,7 +48,8 @@ public:
                     }
             }
         }
-        while(!st.empty()) {
+        while(!st.empty())
+        {
             ans = stoi(st.top());
             st.pop();
         }
