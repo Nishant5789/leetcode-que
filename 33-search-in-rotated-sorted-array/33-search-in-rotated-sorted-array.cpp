@@ -10,7 +10,7 @@ class Solution {
         
         int mid;
         //Iterative binary search
-        while(left<right)
+        while(left<=right)
         {
             mid = (left+right)/2;
             if(nums[mid]>nums[mid+1])
