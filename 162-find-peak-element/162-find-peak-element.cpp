@@ -2,7 +2,8 @@ class Solution {
 public:
     int findPeakElement(vector<int>& arr) {
         int n=arr.size(), l=0, r=n-1;
-        // here note that why we not use equals to sign because 
+        // here note that why we not use equals to sign because in monotonic case you choose one left r right to your ans;
+        // link-https://www.youtube.com/watch?v=r7U0N2EE_l8
         while(l<r)
         {
             int mid=l+(r-l)/2;
