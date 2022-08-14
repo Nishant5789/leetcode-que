@@ -2,7 +2,7 @@ class Solution {
 public:
     int findPeakElement(vector<int>& arr) {
         int n=arr.size(), l=0, r=n-1;
-        
+        // here note that why we not use equals to sign because 
         while(l<r)
         {
             int mid=l+(r-l)/2;
@@ -14,10 +14,10 @@ public:
             // (2)(4) option we used l = mid + 1
             
             // if we find the peak element but we don't stop the loop because there multiple peak exits
-            if(arr[mid] > arr[mid+1])
-                r = mid;
-            else
+            if(arr[mid] <= arr[mid+1])
                 l = mid+1;
+            else
+                r = mid;
         }
         return l;
     }
