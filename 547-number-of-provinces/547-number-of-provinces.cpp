@@ -1,42 +1,47 @@
 class Solution {
-    
-void dfs(int node,unordered_map<int, bool> &visited,unordered_map<int, list<int>> &adj)
-{
-    visited[node] = true;
-    
-    //for all conected node called recursive call
-    for(auto i: adj[node])
+    void makeset(vector<int> &parent, int n)
     {
-        if(!visited[i])
+        for(int i=0; i<n; i++)
         {
-            dfs(i, visited, adj);
+            parent[i]=i;
         }
     }
-}
+    
+    int findparent(vector<int> &parent, int node)
+    {
+        if(parent[node]== node)
+            return node;
+        // for compress the path
+        return  parent[node] = findparent(parent,  parent[node]);
+    }
+    
+    void unionset(int u, int v, vector<int> &parent)
+    {
+        u = findparent (parent, u);
+        v = findparent (parent, v);
+        parent[v]=u;
+    }
+    
 public:
     int findCircleNum(vector<vector<int>>& isconnect) {
-        unordered_map<int, list<int>> adj;
+        
         int n=isconnect.size(), m=isconnect[0].size();
-        for(int i=1; i<=n; i++)
+        vector<int> parent(n);
+        makeset(parent, n);
+
+        for(int i=0; i<n; i++)
         {
-            adj[i].push_front(i);
-            for(int j=1; j<=m; j++)
+            for(int j=0; j<m; j++)
             {
-                if(isconnect[i-1][j-1])
-                adj[i].push_front(j);
+                if(isconnect[i][j])
+                unionset(i, j, parent);
             }
         }
         int count=0;
-        queue<int> q;
-        unordered_map<int,bool> visited;
-   
-        for(int i=1; i<=n; i++)
+        for(int i=0; i<n; i++)
         {
-            if(!visited[i])
-            {
-                dfs(i, visited, adj);
+            if(parent[i]==i)
                 count++;
-            }
         }
         return count;
     }
