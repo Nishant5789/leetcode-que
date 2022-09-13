@@ -1,26 +1,11 @@
 class Solution {
-//     int dijkstra(int n, int source, vector<pair<int,int>> graph[])
-//     {
-        
-//     }
-public:
-    int networkDelayTime(vector<vector<int>>& times, int n, int k) {
-        vector<pair<int,int>> graph[n+1];
-        for(int i=0; i<times.size(); i++)
-        {
-            graph[times[i][0]].push_back({times[i][1],times[i][2]});
-        }
-        // int K=1;
-        // for(auto i: graph)
-        // {
-        //     cout << k++ << "- ";
-        //     cout << i.first << " " << i.second<< endl;
-        // }
+    int dijkstra(int n, int source, vector<pair<int,int>> graph[])
+    {
         vector<int> distance(n+1,INT_MAX);
         vector<bool>visited(n+1,false);
         set<pair<int,int>> st;
-        st.insert({0,k});
-        distance[k]=0;
+        st.insert({0,source});
+        distance[source]=0;
         while(st.size()>0)
         {
             auto node = *st.begin();
@@ -49,5 +34,16 @@ public:
             cout << distance[i] << " ";
         }
         return ans;
+
+    }
+public:
+    int networkDelayTime(vector<vector<int>>& times, int n, int k) {
+        vector<pair<int,int>> graph[n+1];
+        for(int i=0; i<times.size(); i++)
+        {
+            graph[times[i][0]].push_back({times[i][1],times[i][2]});
+        }
+        
+        return dijkstra(n, k, graph);
     }
 };
